@@ -1,5 +1,9 @@
 module.exports = {
+<<<<<<< HEAD
   baseUrl: "http://dev.buzzfeed.com:8080/bf2/",
+=======
+  baseUrl: "http://dev.buzzfeed.com/bf2/",
+>>>>>>> e2f63961cc88251f43046e82f45eeca4809cc14d
   //baseUrl: "http://www.buzzfeed.com/",
   userAgent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.90 Safari/537.36",
   android_userAgent: "Mozilla/5.0 (Linux; Android 4.4.4; en-us; Nexus 5 Build/JOP40D) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2307.2 Mobile Safari/537.36",
