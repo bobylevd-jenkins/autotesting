@@ -68,7 +68,7 @@ casper.options.pageSettings = { userAgent: config.apple_userAgent };
 casper.test.begin('Adobe Page and Click events verification on Mobile Web.', function suite(test) {
   phantom.clearCookies();
 
-  casper.start(config.baseUrl + pages.urlIndex, function(){
+  casper.start(config.baseUrl + pages.index.url, function(){
       test.assertExist(x('//*[@id="menu-toggle"]'), 'Check that site is loaded.');
     casper.evaluate(function () {
       if (BF_STATIC.bf_env == 'dev') {

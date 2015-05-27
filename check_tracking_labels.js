@@ -7,42 +7,6 @@ var pages = require('./env/pages');
 var collector = [];
 var x = require('casper').selectXPath;
 
-var paramsLol = {
-  v51 : 'v51=home%3Aheader',
-  v52 : 'v52=badge%2Flol',
-  v53 : 'v53=%28no%20label%29'
-};
-var paramsWin = {
-  v51 : 'v51=home%3Aheader',
-  v52 : 'v52=badge%2Fwin',
-  v53 : 'v53=%28no%20label%29'
-};
-var paramsOmg = {
-  v51 : 'v51=home%3Aheader',
-  v52 : 'v52=badge%2Fomg',
-  v53 : 'v53=%28no%20label%29'
-};
-var paramsCute = {
-  v51 : 'v51=home%3Aheader',
-  v52 : 'v52=badge%2Fcute',
-  v53 : 'v53=%28no%20label%29'
-};
-var paramsFail = {
-  v51 : 'v51=home%3Aheader',
-  v52 : 'v52=badge%2Ffail',
-  v53 : 'v53=%28no%20label%29'
-};
-var paramsWtf = {
-  v51 : 'v51=home%3Aheader',
-  v52 : 'v52=badge%2Fwtf',
-  v53 : 'v53=%28no%20label%29'
-};
-var paramsTrending = {
-  v51 : 'v51=home%3Aheader',
-  v52 : 'v52=badge%2Ftrending',
-  v53 : 'v53=%28no%20label%29'
-};
-
 function checkenv() {
   this.evaluate(function () {
     if (BF_STATIC.bf_env == 'dev') {
@@ -50,7 +14,7 @@ function checkenv() {
       bfa('setSettings', {'debug': false});
     }
   });
-};
+}
 
 // ===========================================================
 // CASPER OPTIONS
@@ -70,7 +34,7 @@ casper.options.pageSettings.userAgent = config.userAgent;
 casper.test.begin('Adobe Page and Click events verification', function suite(test) {
   phantom.clearCookies();
 
-  casper.start(config.baseUrl + pages.urlIndex, function() {
+  casper.start(config.baseUrl + pages.index.url, function() {
     test.assertSelectorExists(x('//*[@id="header-signin"]'), 'Check that site is loaded.');
   });
 
@@ -79,11 +43,11 @@ casper.test.begin('Adobe Page and Click events verification', function suite(tes
 // ===========================================================
 // LOL Feed
 
-  casper.thenClick(x(pages.xpathLol), function (){
-    test.assertTitle((pages.titleLol), 'assert title matches ' + pages.titleLol);
-    for (var key in paramsLol) {
-      if (paramsLol.hasOwnProperty(key)) {
-        var obj = paramsLol[key];
+  casper.thenClick(x(pages.lol.xpath), function (){
+    test.assertTitle((pages.lol.title), 'assert title matches ' + pages.lol.title);
+    for (var key in pages.lol.binder) {
+      if (pages.lol.binder.hasOwnProperty(key)) {
+        var obj = pages.lol.binder[key];
         test.assertEquals((collector[0].indexOf(obj) > -1), true, obj + ' check');
       }
     }
@@ -94,11 +58,11 @@ casper.test.begin('Adobe Page and Click events verification', function suite(tes
 // ===========================================================
 // WIN Feed
 
-  casper.thenClick(x(pages.xpathWin), function (){
-    test.assertTitle((pages.titleWin), 'assert title matches ' + pages.titleWin);
-    for (var key in paramsWin) {
-      if (paramsWin.hasOwnProperty(key)) {
-        var obj = paramsWin[key];
+  casper.thenClick(x(pages.win.xpath), function (){
+    test.assertTitle((pages.win.title), 'assert title matches ' + pages.win.title);
+    for (var key in pages.win.binder) {
+      if (pages.win.binder.hasOwnProperty(key)) {
+        var obj = pages.win.binder[key];
         test.assertEquals((collector[1].indexOf(obj) > -1), true, obj + ' check');
       }
     }
@@ -109,11 +73,11 @@ casper.test.begin('Adobe Page and Click events verification', function suite(tes
 // ===========================================================
 // OMG Feed
 
-  casper.thenClick(x(pages.xpathOmg), function (){
-    test.assertTitle((pages.titleOmg), 'assert title matches ' + pages.titleOmg);
-    for (var key in paramsOmg) {
-      if (paramsOmg.hasOwnProperty(key)) {
-        var obj = paramsOmg[key];
+  casper.thenClick(x(pages.omg.xpath), function (){
+    test.assertTitle((pages.omg.title), 'assert title matches ' + pages.omg.title);
+    for (var key in pages.omg.binder) {
+      if (pages.omg.binder.hasOwnProperty(key)) {
+        var obj = pages.omg.binder[key];
         test.assertEquals((collector[2].indexOf(obj) > -1), true, obj + ' check');
       }
     }
@@ -124,11 +88,11 @@ casper.test.begin('Adobe Page and Click events verification', function suite(tes
 // ===========================================================
 // CUTE Feed
 
-  casper.thenClick(x(pages.xpathCute), function (){
-    test.assertTitle((pages.titleCute), 'assert title matches ' + pages.titleCute);
-    for (var key in paramsCute) {
-      if (paramsCute.hasOwnProperty(key)) {
-        var obj = paramsCute[key];
+  casper.thenClick(x(pages.cute.xpath), function (){
+    test.assertTitle((pages.cute.title), 'assert title matches ' + pages.cute.title);
+    for (var key in pages.cute.binder) {
+      if (pages.cute.binder.hasOwnProperty(key)) {
+        var obj = pages.cute.binder[key];
         test.assertEquals((collector[3].indexOf(obj) > -1), true, obj + ' check');
       }
     }
@@ -139,11 +103,11 @@ casper.test.begin('Adobe Page and Click events verification', function suite(tes
 // ===========================================================
 // FAIL Feed
 
-  casper.thenClick(x(pages.xpathFail), function (){
-    test.assertTitle((pages.titleFail), 'assert title matches ' + pages.titleFail);
-    for (var key in paramsFail) {
-      if (paramsFail.hasOwnProperty(key)) {
-        var obj = paramsFail[key];
+  casper.thenClick(x(pages.fail.xpath), function (){
+    test.assertTitle((pages.fail.title), 'assert title matches ' + pages.fail.title);
+    for (var key in pages.fail.binder) {
+      if (pages.fail.binder.hasOwnProperty(key)) {
+        var obj = pages.fail.binder[key];
         test.assertEquals((collector[4].indexOf(obj) > -1), true, obj + ' check');
       }
     }
@@ -154,11 +118,11 @@ casper.test.begin('Adobe Page and Click events verification', function suite(tes
 // ===========================================================
 // WTF Feed
 
-  casper.thenClick(x(pages.xpathWtf), function (){
-    test.assertTitle((pages.titleWtf), 'assert title matches ' + pages.titleWtf);
-    for (var key in paramsWtf) {
-      if (paramsWtf.hasOwnProperty(key)) {
-        var obj = paramsWtf[key];
+  casper.thenClick(x(pages.wtf.xpath), function (){
+    test.assertTitle((pages.wtf.title), 'assert title matches ' + pages.wtf.title);
+    for (var key in pages.wtf.binder) {
+      if (pages.wtf.binder.hasOwnProperty(key)) {
+        var obj = pages.wtf.binder[key];
         test.assertEquals((collector[5].indexOf(obj) > -1), true, obj + ' check');
       }
     }
@@ -169,11 +133,11 @@ casper.test.begin('Adobe Page and Click events verification', function suite(tes
 // ===========================================================
 // Trending Feed
 
-  casper.thenClick(x(pages.xpathTrending), function (){
-    test.assertTitle((pages.titleTrending), 'assert title matches ' + pages.titleTrending);
-    for (var key in paramsTrending) {
-      if (paramsTrending.hasOwnProperty(key)) {
-        var obj = paramsTrending[key];
+  casper.thenClick(x(pages.trending.xpath), function (){
+    test.assertTitle((pages.trending.title), 'assert title matches ' + pages.trending.title);
+    for (var key in pages.trending.binder) {
+      if (pages.trending.binder.hasOwnProperty(key)) {
+        var obj = pages.trending.binder[key];
         test.assertEquals((collector[6].indexOf(obj) > -1), true, obj + ' check');
       }
     }
